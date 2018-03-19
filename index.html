@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="assets/css/resset.css">
+<script type="text/javascript" src="node_modules\jquery\dist\jquery.min.js"></script>
+</head>
+<body>
+	
+	<div id="content">
+		
+		<div id="player">
+		<img id="pikachu-sit" src="assets/images/pikachu-sit.png">
+		<img id="pikachu-up" src="assets/images/Pikachu-up.png">
+		<img id="pikachu-down" src="assets/images/Pikachu-down.png">
+		</div>
+		
+		<div  id="0" class="ball-1" >	
+		</div>
+		<div  id="1" class="ball-2" >	
+		</div>
+		<div id="2" class="ball-3">	
+		</div>
+	</div>
+	<div id="bricks">
+			<img id="image-bricks" src="assets/images/briks.jpg">
+	</div>
+</body>
+<script>
+$( document ).ready(function(){
+	
+		
+		var player=$("#pikachu-up");
+		var playerSit=$("#pikachu-sit");
+		var playerDown=$("#pikachu-down");
+		var ball=$("#0");
+		var hit = 0;
+		var isHit = false;
+	function keyPress(){
+
+		$('body').on('keydown', function(event) {	 
+			
+			    if(event.keyCode == 38 && player.position().top == 209){
+			    	player.animate({top: '-=70'},600);
+			    	player.animate({top: '+=70'},600);
+			    	
+			    	
+			    }    
+			    if(event.keyCode == 37 &&  player.position().top == 209 ){
+					player.hide();
+					playerSit.show();
+				      
+				 }
+			    if(event.keyCode == 40 &&  (player.position().top == 209 || player.position().top==285)){
+					player.hide();
+					playerSit.hide();
+					playerDown.show();
+				      
+				 }
+			    
+			});
+		
+		$('body').on('keyup', function(event) {
+				if(event.keyCode == 37){
+					playerSit.hide();
+					player.show();
+			}
+				if(event.keyCode == 40){
+					player.show();
+					playerSit.hide();
+					playerDown.hide();
+			}
+		});
+}
+	function moveBall(){	
+		setInterval(function(){ selectBall(); }, 2500);
+		
+		function selectBall(){
+			var choice=Math.floor((Math.random() * 3) + 0);
+			if(choice==0){
+				 
+				ball.animate({left: '+=670'},{
+					duration:3000,
+					step: function(){
+						var left = ball.position().left;
+						
+							if(left >= 660 && player.position().top == 209 || playerSit.position().top==285 || playerDown.position().top==310)
+							{isHit=true;
+							console.log(player.position().top);
+							}
+					},
+					complete:function(){
+					  ball.css({left: '0'});
+
+						if(isHit){
+							hit++;
+							isHit=false;
+							
+						}
+						console.log(hit);
+					}
+				});
+			}
+			if(choice==1){
+				
+				$("#1").animate({left: '+=670'},{
+					duration:3000,
+					step: function(){
+						var left = $("#1").position().left;
+						
+							if(left >= 670 && player.position().top==209)
+							{isHit=true;}
+					},
+					complete:function(){
+					  $("#1").css({left: '0'});
+
+						if(isHit){
+							hit++;
+							isHit=false;
+							
+						}
+						console.log(hit);
+					}
+				});
+			}
+			if(choice==2){
+				$("#2").animate({left: '+=670'},3000,function(){
+				$("#2").css({left: '0'});
+				});
+			}
+		}
+	}
+	function getPosition(){
+		console.log(player.position().top);
+		console.log(ball.position().top);
+	}
+	
+		
+		function mainloop(){
+			
+			keyPress();
+			moveBall();
+			
+		}
+		requestAnimationFrame( mainloop );
+	});
+</script>
+</html>

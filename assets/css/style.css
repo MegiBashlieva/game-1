@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+
+#content{
+	background-image: url("../images/sky.jpg");
+	
+	width: 700px;
+	height: 350px;
+	margin:0 auto;
+	margin-top:3em;
+	background-size:100% 100%;
+}
+
+#player{
+	display:inline-block;
+	float:right;
+	position:relative;
+	
+}
+#pikachu-up{
+	width:70px;
+	height:150px;
+	position:relative;
+	top:209px;
+	float:left;
+}
+#pikachu-sit{
+	width:70px;
+	height:70px;
+	position:relative;
+	top:285px;
+	float:left;
+	display:none;
+}
+#pikachu-down{
+	width:120px;
+	height:50px;
+	position:relative;
+	top:310px;
+	float:left;
+	display:none;
+}
+
+.ball-1{
+	background-image: url("../images/ball.png");
+	background-size:100% 100%;
+	position:relative;
+	width:30px;
+	height:30px;
+	float:left;
+	top:320px;
+}
+.ball-2{
+	background-image: url("../images/ball.png");
+	background-size:100% 100%;
+	position:relative;
+	width:30px;
+	height:30px;
+	top:230px;
+}
+.ball-3{
+	background-image: url("../images/ball.png");
+	background-size:100% 100%;
+	position:relative;
+	width:30px;
+	height:30px;
+	top:245px;
+}
+
+#bricks{
+	width:700px;
+	height:70px;
+	margin: 0 auto;
+}
+#image-bricks{
+	width:100%;
+	height:70px;
+	
+}
